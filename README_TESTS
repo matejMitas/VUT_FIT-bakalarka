@@ -1,0 +1,186 @@
+Priklad testu:
+
+{
+    "tests": [
+        {
+            "name"      : "bloky",
+            "type"      : "approximation",
+            "files"     : {
+                "limit"     : 0,
+                "include"   : [
+                    "fotky_61.ppm",
+                    "fotky_97.ppm",
+                    "mapy_7.ppm"
+                ],
+                "exclude"   : []
+            },
+            "to_save"   : [
+                ],
+            "dir"       : "/Volumes/Data_Mac/IBT_data",
+            "drivers"   : ["kakadu"],
+            "log"       : true,
+            "routines"  : {
+                "compress": {   
+                    "criterion"     : {
+                        "type"              : "psnr",
+                        "value"             : [36] 
+                    },
+                    "testing_param" : {
+                        "flag"              : "blocks",
+                        "opts"              : [[32,32], [64,64]]
+                    },
+                    "params"        : {
+                        "threads"           : 8,
+                        "precision"         : true,
+                        "tolerance"         : 0,
+                        "levels"            : 5,
+                        "color_transform"   : true
+                    }
+                },
+                "decompress": {
+                    "params"        : {
+                        "threads"           : 8
+                    }
+                }
+            }
+        },
+        {
+            "name"      : "block_final",
+            "type"      : "final",
+            "log"       : true,
+            "source"    : "previous"
+        }
+    ]
+}
+
+Pole "tests" muze obsahovat vice testu, pouze je nutno zarucit, ze pri pouziti
+finalniho testovani predchozi test patri do dvojice (nelze mit "approximation",
+"final", "final"). Existuji tedy dva typy. "approximation" je prvni s jmenen 
+a type. Nasleduji "files", kde muze byt aktivni pouze jeden parametr, nelze 
+kombinovat, "limit" omezi pocet souboru v testu, "include" vezme pouze popsane
+soubory a "exclude" vsechny ze slozky krome zminenych. "to_save" umoznuje explicitne
+ulozit jednotlive testove soubory, napr. pro pozdejsi analyzu, jinak se mazou.
+Jejich pocet odpovida "testing_params.opts". "drivers" obsahuji infomace o knihovnach,
+"kakadu" nebo "openjpg". "log" je zapnuti logovani do db, nutno mit pro zobrazeni
+grafu nebo dalsi testovani. Nasleduji "routines", "criterion" muze mit pouze "compress",
+"params" obe a "testing_param" je doporucovano pouzit pouze u "compress". "criterion"
+ma dva typy, "psnr" a "rate". Prvni znaci aproximacni hladinu pro PSNR, lze zadat vice,
+bezeztratova je 100 (neni to uplne presne oznaceni, ale postacuje). Druhe jsou konkretni
+bitove hloubky, ktere se jenom nastavi. Nasleduje "testing_param" pro vysetrovany
+parametr testu. "flag" hodnoty se nachazi ./config/flags_config.json a vetsina je 
+zobrazena v priloze prace. 
+
+"blocks": [
+	{
+		"opt"		: "Cblk",
+		"divider"	: "=",
+		"format"	: "pair_braces"
+	},
+	{
+		"opt"		: "-b",
+		"divider"	: null,
+		"format"	: "pair"
+	}
+]
+
+Zde je priklad v predpisu zvoleneho "blocks". Knihovni funkce jsou uvedeny ve ctverici
+[kakadu komprese, openjpg komprese, kakadu dekomprese, openjpg dekomprese], v tomto
+pripade tedy parametr pro kompresi v kakadu i openjpg. Pokud knihovna nepodporuje 
+dane nastaveni, staci vlozit "{}" na prislusny index. "opt" je pojmenovani parametru
+knihovnou, "divider" je premosteni mezi nastavenim a hodnotou a "format" znaci typ
+hodnoty. Kakadu zde vytvori "Cblk={64,64}" a openjpg "-b 64,64". Formaty existuji:
+single 		- 64
+pair 		- 64,64
+pair_braces - {64,64}
+pair_box 	- [64,64]
+
+Dale existuje moznost listu, napr. u precinctu je mozno zvolit vice moznosti. Vezme se 
+vhodny format a pote se pouzije vhodne spojeni:
+
+"testing_param" : {
+    "flag"              : "precincts",
+    "opts"              : [[[256,256],[128,128]]]
+},
+
+"precincts": [
+	{
+		"opt"		: "Cprecincts",
+		"divider"	: "=",
+		"format"	: "pair_braces",
+		"list"		: {
+			"divider": ","
+		}
+	},
+	{
+		"opt"		: "-c",
+		"divider"	: null,
+		"format"	: "pair_box",
+		"list"		: {
+			"divider": ","
+		}
+	}
+]
+
+Vznikne pro precincty 256x256, 128x128 pro kakadu "Cprecincts={256,265},{128,128}" a pro
+openjpg "-c [256,265],[128,128]". Je mozno zvolit i pokrocilejsi nastaveni, jako je napriklad 
+nastaveni modu koderu.
+
+"testing_param" : {
+    "flag"              : "mode",
+    "opts"              : [["BYPASS", "RESET", "RESTART"]]
+},
+
+"mode": [
+	{
+		"opt"		: "Cmodes",
+		"divider"	: "=",
+		"format" 	: "single",
+		"list"		: {
+			"divider": "|"
+		}
+	},
+	{
+		"opt"		: "-M",
+		"divider"	: null,
+		"format"	: "match",
+		"match_pattern": {
+			"BYPASS"	: 1,
+			"RESET"		: 2, 
+			"RESTART"	: 4,
+			"VSC"		: 8,
+			"ERTERM"	: 16,
+			"SEGMARK"	: 32
+		},
+		"modifier"	: "+"
+	}
+]
+
+Kakadu je stejne, jako minule, jenom je jiny "divider". Kakadu "Cmodes=BYPASS|RESET|RESTART", 
+ale pro openjpg je situace komplikovanejsi, zaveden novy "format" match, ten pro kazdou 
+hodnotu najde vhodny protejsek pro knihovnu, zde jeste zesloziteno mechanismem scitani 
+u openjpg "-M 7". Posledni typ jsou prepinace typu zapnuti markeru.
+
+"testing_param" : {
+    "flag"              : sop,
+    "opts"              : [True, False]
+},
+
+"sop": [
+	{
+		"opt"			: "Cuse_sop",
+		"divider"		: "=",
+		"format"		: "match",
+		"match_pattern"	: ["no", "yes"]
+	},
+	{
+		"opt"			: "-SOP",
+		"divider"		: null,
+		"format"		: "toggle"
+	}
+]
+
+Openjpg s "format" toggle funguje tak, že pro "opts" False prepinac vypne a True zapne "-SOP".
+Kakadu vyzaduje jiny format "Cuse_sop=yes" pro True a "Cuse_sop=no" pro False. Jakekoliv takto
+definovane nastaveni lze pouzit i u "params", ale je fixni pro test.
+U "final" testu je mozno pro "source" pouzit session_hash nebo "previous" pro automaticke
+doplneni z minuleho "approximation" sezeni.

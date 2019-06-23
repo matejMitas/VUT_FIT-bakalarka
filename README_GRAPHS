@@ -1,0 +1,87 @@
+Priklad grafu:
+
+{
+    "graph": [
+        {
+            "sessions": [
+                {
+                    "name"  : "fotky_rgb_ycrcb",
+                    "input" : [
+                        "e90c76a158764f6708e22e41bda35fdc"
+                    ],
+                    "data_settings"     : {
+                        "streams"   : "criterion",
+                        "values"    : "opts" 
+                    },
+                     "graph_settings"    : [
+                        {
+                            "x"         : "barevný prostor", 
+                            "y"         : "bpp",
+                            "title"     : "kompresní výkon",
+                            "limits"            : [0, 0.5],
+                            "type"              : "bar",
+                            "highlighted_opt"   : 10,
+                            "labels"    : ["RGB", "YCbCr"]
+                        },
+                        {
+                            "x"         : "barevný prostor", 
+                            "y"         : "ns/px",
+                            "title"     : "čas zpracování",
+                            "limits"    : [0, 100],
+                            "type"      : "bar",
+                            "legend"    : ["komprese", "dekomprese"],
+                            "labels"    : ["RGB", "YCbCr"]
+                        }
+                     ],
+                    "mode"      : "normal"
+                }
+            ],
+            "blueprint"         : "test_small",
+            "output"           : {
+                "name"      : "fotky_rgb_ycrcb",
+                "folder"    : "rgb_ycrcb"
+            }
+        }
+    ]
+}
+
+Opet lze vykreslit vice grafu z jednoho souboru. "name" je oznaceni do
+vypisu konzole, "input" obsahuje session_hash zdrojovych testovacich 
+sezeni, "data_settings" urciju orientaci grafu, existuji dve nastaveni
+podle zvoleneho kriteria "criterion" (nutno dodrzet):
+psnr 
+"streams"   : "criterion",
+"values"    : "opts" 
+
+rate
+"streams"   : "opts",
+"values"    : "criterion" 
+
+"graph_settings" obsahuje nastaveni grafu podle zvoleneho "blueprint", muze
+nabyvat hodnot "test_small" (dva grafy vedle sebe) a "test_big" (dva grafy
+pod sebou), prvni obsahuje vysetrene kriterium a druhy je sjednocen pro cas 
+komprese a dekomprese. Nastaveni v "graph_settings" jsou celkem jasna, "type"
+znaci typ grafu (bud sloupce "bar" nebo krivka "plot"). "highligthed_opt" je
+moznost zvyraznit hodnotu, musi se zapnout v kodu. "legend" nastavuje vlastni
+legendu grafu, "labels" se vztahuji na osu x, "limits" na osu y. "output" znaci
+jmeno vystupniho souboru a slozku do podkladu prace (ted vyple, protoze je jinde).
+Existuji i jine "blueprint" grafu, napr. "aprx_quality"
+
+{
+    "graph": [
+        {
+            "source"            : "./t/order_out/RPCL",
+            "used_files"        : ["0.01", "0.025", "0.05"],
+            "blueprint"         : "aprx_quality",
+            "output"           : {
+                "name"      : "rpcl",
+                "folder"    : "order"
+            }
+        }
+    ]
+} 
+
+Ten vyrobi graf obrazku vedle sebe s popiskami "used_files" ve slozce "source".
+Soubory musi byt ulozeny s podtrzikem varianty, napr "image_0.01.ppm".
+
+

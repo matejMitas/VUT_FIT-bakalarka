@@ -1,0 +1,50 @@
+{
+    "tests": [
+        {
+            "name"      : "prevod_barevneho_prostoru",
+            "type"      : "approximation",
+            "files"     : {
+                "limit"     : 0,
+                "include"   : [
+                    "mapy_4-10.ppm"
+                ],
+                "exclude"   : []
+            },
+            "to_save"   : [
+                ],
+            "dir"       : "/Volumes/Data_Mac/IBT_testing/psnr_test",
+            "drivers"   : ["kakadu"],
+            "log"       : true,
+            "routines"  : {
+                "compress": {   
+                    "criterion"     : {
+                        "type"              : "psnr",
+                        "value"             : [35, 100] 
+                    },
+                    "testing_param" : {
+                        "flag"               : "tiles",
+                        "range"             : [6, 13],
+                        "step"              : "2n"
+                    },
+                    "params"        : {
+                        "threads"           : 8,
+                        "blocks"            : [64,64],
+                        "precision"         : true,
+                        "tolerance"         : 0
+                    }
+                },
+                "decompress": {
+                    "params"        : {
+                        "threads"           : 8
+                    }
+                }
+            }
+        },
+        {
+            "name"      : "prevod_barevneho_prostoru_final",
+            "type"      : "final",
+            "log"       : true,
+            "source"    : "previous"
+        }
+    ]
+}

@@ -1,0 +1,53 @@
+{
+    "tests": [
+        {
+            "name"      : "prevod_barevneho_prostoru",
+            "type"      : "approximation",
+            "files"     : {
+                "limit"     : 0,
+                "include"   : [
+                    "bitonal_1+10.ppm", 
+                    "bitonal_2+10.ppm", 
+                    "bitonal_3+10.ppm", 
+                    "bitonal_4+10.ppm"
+                ],
+                "exclude"   : []
+            },
+            "to_save"   : [],
+            "dir"       : "/Volumes/Data_Mac/IBT_testing",
+            "drivers"   : ["kakadu"],
+            "log"       : true,
+            "routines"  : {
+                "compress": {   
+                    "criterion"     : {
+                        "type"              : "psnr",
+                        "value"             : [40, 100] 
+                    },
+                     "testing_param" : {
+                        "flag"              : "color_transform",
+                        "opts"              : [true, false]
+                    },
+                    "params"        : {
+                        "threads"           : 8,
+                        "blocks"            : [64,64],
+                        "precision"         : true,
+                        "tolerance"         : 0
+                    }
+                },
+                "decompress": {
+                    "params"        : {
+                        "threads"           : 8
+                    }
+                }
+            }
+        },
+        {
+            "name"      : "prevod_barevneho_prostoru_final",
+            "type"      : "final",
+            "log"       : true,
+            "source"    : "previous"
+        }
+    ]
+}
+
+

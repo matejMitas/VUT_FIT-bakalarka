@@ -1,0 +1,4 @@
+opencv-python
+termcolor
+matplotlib
+pymongo

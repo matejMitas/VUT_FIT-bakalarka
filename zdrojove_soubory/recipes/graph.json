@@ -1,0 +1,44 @@
+{
+    "graph": [
+        {
+            "sessions": [
+                {
+                    "name"  : "fotky_rgb_ycrcb",
+                    "input" : [
+                        "e90c76a158764f6708e22e41bda35fdc"
+                    ],
+                    "data_settings"     : {
+                        "streams"   : "criterion",
+                        "values"    : "opts" 
+                    },
+                     "graph_settings"    : [
+                        {
+                            "x"         : "barevný prostor", 
+                            "y"         : "bpp",
+                            "title"     : "kompresní výkon",
+                            "limits"            : [0, 0.5],
+                            "type"              : "bar",
+                            "highlighted_opt"   : 10,
+                            "labels"    : ["RGB", "YCbCr"]
+                        },
+                        {
+                            "x"         : "barevný prostor", 
+                            "y"         : "ns/px",
+                            "title"     : "čas zpracování",
+                            "limits"    : [0, 100],
+                            "type"      : "bar",
+                            "legend"    : ["komprese", "dekomprese"],
+                            "labels"    : ["RGB", "YCbCr"]
+                        }
+                     ],
+                    "mode"      : "normal"
+                }
+            ],
+            "blueprint"         : "test_small",
+            "output"           : {
+                "name"      : "fotky_rgb_ycrcb",
+                "folder"    : "rgb_ycrcb"
+            }
+        }
+    ]
+}

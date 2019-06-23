@@ -1,0 +1,279 @@
+{
+	"blocks": [
+		{
+			"opt"		: "Cblk",
+			"divider"	: "=",
+			"format"	: "pair_braces"
+		},
+		{
+			"opt"		: "-b",
+			"divider"	: null,
+			"format"	: "pair"
+		}
+	],
+	"tiles": [
+		{
+			"opt"		: "Stiles",
+			"divider"	: "=",
+			"format"	: "pair_braces"
+		},
+		{
+			"opt"		: "-t",
+			"divider"	: null,
+			"format"	: "pair"
+		}
+	],
+	"tile_origin": [
+		{
+			"opt"		: "Stile_origin",
+			"divider"	: "=",
+			"format"	: "pair_braces"
+		},
+		{}
+	],
+	"canvas_origin": [
+		{
+			"opt"		: "Sorigin",
+			"divider"	: "=",
+			"format"	: "pair_braces"
+		},
+		{}
+	],
+	"precincts": [
+		{
+			"opt"		: "Cprecincts",
+			"divider"	: "=",
+			"format"	: "pair_braces",
+			"list"		: {
+				"divider": ","
+			}
+		},
+		{
+			"opt"		: "-c",
+			"divider"	: null,
+			"format"	: "pair_box",
+			"list"		: {
+				"divider": ","
+			}
+		}
+	],
+	"sampling": [
+		{
+			"opt"		: "Ssampling",
+			"divider"	: "=",
+			"format"	: "pair_braces",
+			"list"		: {
+				"divider": ","
+			}
+		},
+		{}
+	],
+	"precision": [
+		{
+			"opt"			: "-precise",
+			"divider"		: null,
+			"format"		: "toggle"
+		},
+		{}
+	],
+	"tolerance": [
+		{
+			"opt"			: "-tolerance",
+			"divider"		: null,
+			"format"		: "single"
+		},
+		{}
+	],
+	"quantization": [
+		{
+			"opt"		: "Qstep",
+			"divider"	: "=",
+			"format"	: "single"
+		},
+		{}
+	],
+	"kernels": [
+		{
+			"opt"		: "Ckernels",
+			"divider"	: "=",
+			"format"	: "single"
+		},
+		{}
+	],
+	"custom_kernels": [
+		{
+			"opt"		: "Kkernels",
+			"divider"	: "=",
+			"format"	: "single"
+		},
+		{}
+	],
+	"levels": [
+		{
+			"opt"		: "Clevels",
+			"divider"	: "=",
+			"format"	: "single"
+		},
+		{
+			"opt"		: "-n",
+			"divider"	: null,
+			"format"	: "single"
+		}
+	],
+	"layers": [
+		{
+			"opt"		: "Clayers",
+			"divider"	: "=",
+			"format"	: "single"
+		},
+		{}
+	],
+	"order": [
+		{
+			"opt"		: "Corder",
+			"divider"	: "=",
+			"format"	: "single"
+		},
+		{}
+	],
+	"progression": [
+		{
+			"opt"		: "Corder",
+			"divider"	: "=",
+			"format" 	: "single"
+		},
+		{
+			"opt"		: "-p",
+			"divider"	: null,
+			"format"	: "single"
+		}
+	],
+	"mode": [
+		{
+			"opt"		: "Cmodes",
+			"divider"	: "=",
+			"format" 	: "single",
+			"list"		: {
+				"divider": "|"
+			}
+		},
+		{
+			"opt"		: "-M",
+			"divider"	: null,
+			"format"	: "match",
+			"match_pattern": {
+				"BYPASS"	: 1,
+				"RESET"		: 2, 
+				"RESTART"	: 4,
+				"VSC"		: 8,
+				"ERTERM"	: 16,
+				"SEGMARK"	: 32
+			},
+			"modifier"	: "+"
+		}
+	],
+	"compression": [
+		{
+			"opt"			: "Creversible",
+			"divider"		: "=",
+			"format"		: "match",
+			"match_pattern": {
+				"lossy"		: "no",
+				"lossless"	: "yes"
+			}
+		},
+		{
+			"opt"			: "-I",
+			"divider"		: null,
+			"format"		: "toggle",
+			"toggle_pattern": {
+				"lossy" 	: true,
+				"lossless"	: false
+			}
+		}
+	],
+	"sop": [
+		{
+			"opt"			: "Cuse_sop",
+			"divider"		: "=",
+			"format"		: "match",
+			"match_pattern"	: ["no", "yes"]
+		},
+		{
+			"opt"			: "-SOP",
+			"divider"		: null,
+			"format"		: "toggle"
+		}
+	],
+	"eph": [
+		{
+			"opt"			: "Cuse_eph",
+			"divider"		: "=",
+			"format"		: "match",
+			"match_pattern"	: ["no", "yes"]
+		},
+		{
+			"opt"			: "-EPH",
+			"divider"		: null,
+			"format"		: "toggle"
+		}
+	],
+	"inline_420": [
+		{
+			"opt"			: "-rgb_to_420",
+			"divider"		: null,
+			"format"		: "toggle"
+		}
+	],
+	"threads": [
+		{
+			"opt"			: "-num_threads",
+			"divider"		: null,
+			"format"		: "single"
+		},
+		{},
+		{
+			"opt"			: "-num_threads",
+			"divider"		: null,
+			"format"		: "single"
+		},
+		{
+			"opt"			: "-threads",
+			"divider"		: null,
+			"format"		: "single"
+		} 
+	],
+	"color_transform": [
+		{
+			"opt"			: "Cycc",
+			"divider"		: "=",
+			"format"		: "match",
+			"match_pattern"	: ["no", "yes"]
+		},
+		{
+			"opt"			: "-mct",
+			"divider"		: null,
+			"format"		: "match",
+			"match_pattern"	: [0, 1]
+		}
+	],
+	"quality": [
+		{
+			"opt"		: "-rate",
+			"divider"	: null,
+			"format" 	: "single",
+			"list"		: {
+				"divider": ","
+			}
+		},
+		{
+			"opt"		: "-r",
+			"divider"	: null,
+			"format" 	: "single",
+			"list"		: {
+				"divider": ","
+			},
+			"modifier"	: "rate"
+		}
+	]
+}

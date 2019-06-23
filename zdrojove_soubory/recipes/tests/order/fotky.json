@@ -1,0 +1,45 @@
+{
+    "tests": [
+        {
+            "name"      : "prevod_barevneho_prostoru",
+            "type"      : "approximation",
+            "files"     : {
+                "limit"     : 0,
+                "include"   : [
+                    "fotky_97+10.ppm"
+                ],
+                "exclude"   : []
+            },
+            "to_save"   : [
+                    "fotky_97+10.ppm"
+                ],
+            "dir"       : "/Volumes/Data_Mac/IBT_testing/resolution",
+            "drivers"   : ["kakadu"],
+            "log"       : false,
+            "routines"  : {
+                "compress": {   
+                    "criterion"     : {
+                        "type"              : "rate",
+                        "value"             : [24] 
+                    },
+                    "testing_param" : {
+                        "flag"              : "order",
+                        "opts"              : ["LRCP", "RLCP", "RPCL", "PCRL", "CPRL"]
+                    },
+                    "params"        : {
+                        "threads"           : 8,
+                        "blocks"            : [64,64],
+                        "precision"         : true,
+                        "color_transform"   : true,
+                        "tolerance"         : 0
+                    }
+                },
+                "decompress": {
+                    "params"        : {
+                        "threads"           : 8
+                    }
+                }
+            }
+        }
+    ]
+}

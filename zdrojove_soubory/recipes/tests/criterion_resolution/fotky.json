@@ -1,0 +1,44 @@
+{
+    "tests": [
+        {
+            "name"      : "fotky_res-scaling",
+            "type"      : "approximation",
+            "files"     : {
+                "limit"     : 0,
+                "include"   : [
+                ],
+                "exclude"   : []
+            },
+            "to_save"   : [
+                ],
+            "dir"       : "/Volumes/Data_Mac/IBT_testing/resolution/fotky",
+            "drivers"   : ["kakadu"],
+            "log"       : true,
+            "routines"  : {
+                "compress": {   
+                    "criterion"     : {
+                        "type"              : "rate",
+                        "value"             : [0.025, 0.1, 0.5, 1]
+                    },
+                     "testing_param" : {
+                        "flag"              : "color_transform",
+                        "opts"              : [true]
+                    },
+                    "params"        : {
+                        "threads"           : 8,
+                        "blocks"            : [64,64],
+                        "precision"         : true,
+                        "tolerance"         : 0
+                    }
+                },
+                "decompress": {
+                    "params"        : {
+                        "threads"           : 8
+                    }
+                }
+            }
+        }
+    ]
+}
+
+

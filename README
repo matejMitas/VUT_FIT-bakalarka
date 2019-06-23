@@ -1,0 +1,70 @@
+Struktura toho nosice je nasleduji:
+- prace.pdf obsahuje prelozenou bakalarskou zpravu
+- prace obsahuje podklady k bakalarske praci
+- zdrojove_soubory obsahuji zdroj programu
+- datasety odkazy k jednotlivym datasetum
+- README - obecne readme
+- README_TESTS - mala dokumentace k testu
+- README_GRAPHS - mala dokumentace ke grafum
+
+
+Funkcnost testovaciho programu byla overena na MacOS 10.12.6/Ubuntu 18.10.
+Pro spravne fungovani testovaci programu je nutno zajistit nasledujici veci:
+1. Funkcni Python 3.7 (nektere instalace neobsahuji tkinter, ktery je dulezity pro matplotlib, nutno doinstalovat)
+2. Spravce balicku PIP3
+3. Nainstalovat vsechny zavisloti z requirements.txt: pip3 install -r requirements.txt
+4. Nainstalovat mongodb server
+5. Vytvorit si slozku pro databazi a pote spustit: mongod --dbpath cesta/ke/slozce
+5. Kakaku - http://kakadusoftware.com/downloads/
+6. OpenJPG - balicek 'libopenjp2-tools'
+7. Utilita pro zjistovani informaci o souborech exiftools - balicek 'libimage-exiftool-perl' 
+
+Program lze spustit (ibt19_entry.py) v trech modech:
+-c slozka - pruzkum informaci o slozce
+-t test.json - testovani
+-g graph.json - grafy
+
+Postup prace je nasledujici (po nasleduji vysvetleni znamena ./ = ./zdrojove_soubory):
+1. Vyhrazena slozka pro testovani (napr. ./images v koreni) obsahujici .ppm nebo .pgm soubory
+2. Informace o slozce: python3 ibt19_entry.py -c ./images
+3. Vypis programu, radek po > path obsahuje plnou cestu, tu je nutno zadat do testovaciho predpisu
+
+...
+✓ (opj_decompress) - OpenJPG decompress present
+✓ (pnmpsnr) - PSNR comparator present
+--------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> path
+'/Users/matejmitas/Documents/_Uni/3BITL/IBT/source/images'
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+↠ (info read) - fotky_97+1.ppm
+...
+
+4. Vytvoreni testovaci souboru - struktura v README_TESTS
+5. Zavolani testu: python3 ibt19_entry.py -t ./recipes/test.json
+6. Zkopirovat Hash sezeni z konce vypisu u finalniho testovani
+
+...
+✓ (routine) - Selected variant: False
+✓ (routine) - Selected variant: False
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> Ending 'prevod_barevneho_prostoru_final'
+> Hash '5b752d32d79822800f6d7fa6a806cd5c'
+> 2019-05-14 20:44:50.093491
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+....
+
+7. Tento hash vlozit do parametru 'input' ve zvolenem zdroji grafu v ./recipes/graph.json
+8. Vykreslit graf: python3 ibt19_entry.py -g ./recipes/graph.json
+9. Ve slozce ./graphs se nachazi graf
+
+
+
+Datasetu je pet (Fotografie, Mapy, Scany, Bitonalni RGB24, Gray8), jelikoz se jedna o stovky GB,
+nejsou zde data pribalena, ale ve slozce datasety dva soubory. obecne_zdroje obsahuje odkazy na 
+stranky, kde lze dohledat soubory. zdroj obsahuje prime odkazy na soubory, ktere lze stahnout napr.
+pomoci utility wget: wget -i zdroj
+Oba typy bitonalnich dat byly vytvoreny prevedenim z datasetu Fotografie V praci zminene pocty 
+souboru se nemusi shodovat s poctem souboru zde zminenech z duvodu nevyjasnenych autorskych prav 
+nebo aktualni nedostupnosti, jelikoz byly kompilovany v zari 2018.

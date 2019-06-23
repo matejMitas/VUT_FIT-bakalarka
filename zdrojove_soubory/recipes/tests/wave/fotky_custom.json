@@ -1,0 +1,44 @@
+{
+    "tests": [
+        {
+            "name"      : "prevod_barevneho_prostoru",
+            "type"      : "approximation",
+            "files"     : {
+                "limit"     : 0,
+                "include"   : [
+                    "fotky_97+10.ppm"
+                ],
+                "exclude"   : []
+            },
+            "to_save"   : [],
+            "dir"       : "/Volumes/Data_Mac/IBT_testing",
+            "drivers"   : ["kakadu"],
+            "log"       : true,
+            "routines"  : {
+                "compress": {   
+                    "criterion"     : {
+                        "type"              : "rate",
+                        "value"             : [0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2, 3, 4]
+                    },
+                    "testing_param" : {
+                        "flag"              : "custom_kernels",
+                        "opts"              : ["I2X2", "I1X1"]
+                    },
+                    "params"        : {
+                        "threads"           : 8,
+                        "blocks"            : [64,64],
+                        "precision"         : true,
+                        "tolerance"         : 0     
+                    }
+                },
+                "decompress": {
+                    "params"        : {
+                        "threads"           : 8
+                    }
+                }
+            }
+        }
+    ]
+}
+
+

@@ -1,0 +1,115 @@
+% Tento soubor nahraďte vlastním souborem s přílohami (nadpisy níže jsou pouze pro příklad)
+% This file should be replaced with your file with an appendices (headings below are examples only)
+
+% Umístění obsahu paměťového média do příloh je vhodné konzultovat s vedoucím
+% Placing of table of contents of the memory media here should be consulted with a supervisor
+%\chapter{Obsah přiloženého paměťového média}
+
+%\chapter{Manuál}
+
+%\chapter{Konfigurační soubor} % Configuration file
+
+%\chapter{RelaxNG Schéma konfiguračního souboru} % Scheme of RelaxNG configuration file
+
+\chapter{Kompresní parametry} % poster
+
+
+\begin{center}
+		\setlength{\tabcolsep}{5pt} % Default value: 6pt
+		\renewcommand{\arraystretch}{1.25} % Default value: 1
+			\footnotesize
+			\begin{tabular}{|p{3cm}|p{2cm}|p{9cm}|}
+			\hline
+			\textbf{Kakadu} & \textbf{OpenJPEG} & \textbf{Význam} \\ 
+			\hline
+
+			& \texttt{-F} & Dodání explicitních informací o obrázku (\textit{OpenJPEG}).\\ 
+			 \texttt{-fprec} & & Práce s bitovou hloubkou u komponent vstupního souboru. \\
+			 \texttt{-frag} & & Pouze část obrazu ke kompresi. \\
+			 \texttt{-icrop} & & Ořez obrazu. \\
+			 \texttt{-flush\_period} & & Standardně se čeká na kompresi všech dat (obrazu), vynucení iterativního zápisu souboru. \\
+			 \texttt{-com} & \texttt{-C} & Komentář přímo do datového toku. \\
+			 \texttt{-no\_weights} & & Nepoužívat implicitní váhy barevných RGB koeficientů. \\
+			
+			 \texttt{-rgb\_to\_420, Cycc} & & RGB do Luminance/Chrominance (druhé inline implicitně nastavené) \\ 
+			 \texttt{-num\_threads} & & Počet vláken u Kakadu. \\ 
+			 \texttt{-roi} & \texttt{-ROI} & Regiony zájmu. \\ 
+
+			 \texttt{-rate}  & \texttt{-r} & Nastavení kompresní poměrů, (nelze kombinovat s \texttt{-q}).\\ 
+			  											    & \texttt{-q}  & Kvality udávané v PSNR (nelze kombinovat s \texttt{-r}, pouze \textit{OpenJPEG}).\\ 
+			 \texttt{Creversible}& \texttt{-I} & Ztrátovost komprese, ztrátová (\textit{CDF 9-7}), bezeztrátová (\textit{CDF 5-3}).\\ 
+			  
+			 	
+			 \hline
+			 
+			 \texttt{Cuse\_precincts} & & Použití bloků transformačních koeficientů u Kakadu.\\
+			 \texttt{Cprecincts} & \texttt{-c} & Čtvrecové bloky transfromačních koeficientů.\\
+			 \texttt{Cblk} & \texttt{-b} & Část pásma bloků transformačních koeficientů.\\
+			 \texttt{Ctiles} & \texttt{-t} & Velikost dlaždice, po kterých je obraz zpracováván.\\ 	
+			 \texttt{Ctile\_origin} & \texttt{-T} & Offset dlaždice.\\ 		
+			 \texttt{Sorigin} & \texttt{-d} & Offset obrázku.\\ 							
+			\texttt{Clevels} & \texttt{-n}  & Počet dekompozičních úrovní (\textit{OpenJPEG} +1).\\
+			
+			\hline
+			\texttt{CLayers} & & Počet vrstev kvality (implitně specifikováno počtem kompresí/kvalit).\\
+			\texttt{Corder} & \texttt{-p} & Pořadí operací (L=vrstva; R=rozlišení; C=komponenta; P=pozice).\\
+			\texttt{Porder} & \texttt{-POC} & Změna pořadí operací na úrovni dlaždic.\\
+			\texttt{Ssampling}& \texttt{-s}  & Nastavení vzorkování (Kakadu umí pro každý datový tok, OpenJPEG paušálně).\\
+			\texttt{Cmodes} & \texttt{-M} & Nastavení módu EBCOT.\\
+			
+			\hline
+			\texttt{Cuse\_sop} & \texttt{-SOP} & Zápis SOP (označení resynchronizace) před každý paket.\\
+			\texttt{Cuse\_eph} & \texttt{-EPH} & Zápis EPH (end of packet header) před každou hlavičku paketu.\\
+			\hline
+
+			
+			
+			% \texttt{Sprofile} & \texttt{-cinema2K, 4K} & Explicitní módy kodéru\\
+			% \texttt{Sbroadcast} & & Nastavení módu \textit{BROADCAST} u Kakadu\\
+			% \texttt{-roi} & \texttt{-ROI} & ROI - regióny zájmu, u \textit{OpenJPG} implementováno pouze ke komponentě.\\
+			
+			% \hline
+			
+			% \texttt{Scomponents} &  \texttt{-mct}  & Komponenty obrázku v datovém toku. \\
+			% & \texttt{-m} & Nastavení vlastního módu multikomponentní transformace.\\
+			
+			% \texttt{Ssize} & & Explicitní velikost komponenty. \\
+			% \texttt{Ssigned} & & Bez/znaménkové hodnoty komponenty obrázku v datovém toku. \\
+			% \texttt{Sprecision} & & Bitová hloubka každé komponenty obrázku v datovém toku. \\
+			% \texttt{Ssampling} & & Subsampling komponenty obrázku v datovém toku.\\
+			% \texttt{Sdims} & & Velikost komponenty obrázku v datovém toku. \\
+			
+			
+			% \texttt{Ncomponents} & & Počet multikomponentních transformací na konci komprese.\\
+			% \texttt{Nsigned} & & Bez/znaménkové hodnoty multikomponenty obrázku na konci komprese. \\
+			% \texttt{Nprecision} & & Bitová hloubka každé multikomponenty na konci komprese. \\
+
+			\hline
+		\end{tabular}
+		
+		\end{center}
+
+
+\chapter{Dekompresní parametry} % poster
+
+\begin{center}
+		\setlength{\tabcolsep}{5pt} % Default value: 6pt
+		\renewcommand{\arraystretch}{1.25} % Default value: 1
+			\footnotesize
+			\begin{tabular}{|p{3cm}|p{2cm}|p{9cm}|} 
+			 \hline
+			 \textbf{Kakadu} & \textbf{OpenJPEG} & \textbf{Význam} \\ 
+			 \hline \hline
+			 
+			 \texttt{-num\_threads} & \texttt{-threads} & Počet vláken. \\
+			 \texttt{-rate} &  & Dekomprese při nastavené kvalitě. \\
+			 \texttt{-region} & \texttt{-d} & Explicitní výběr části obrazu k dekompresi. \\
+			 \texttt{-layers} & \texttt{-l} & Počet vstev k dekódování. \\
+			 \texttt{-reduce} & \texttt{-r } & Počet rozlišení k zahození. \\
+			 \texttt{-no\_alpha} & & Bez vrstev průhlednosti. \\
+			 
+			  
+			\hline
+			\end{tabular}
+		
+		\end{center}

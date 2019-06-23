@@ -1,0 +1,52 @@
+{
+    "tests": [
+        {
+            "name"      : "prevod_barevneho_prostoru",
+            "type"      : "approximation",
+            "files"     : {
+                "limit"     : 0,
+                "include"   : [
+                    "fotky_61+20.ppm",
+                    "fotky_97+20.ppm",
+                    "mapy_7+20.ppm"
+                ],
+                "exclude"   : []
+            },
+            "to_save"   : [],
+            "dir"       : "/Volumes/Data_Mac/IBT_testing",
+            "drivers"   : ["kakadu"],
+            "log"       : true,
+            "routines"  : {
+                "compress": {   
+                    "criterion"     : {
+                        "type"              : "psnr",
+                        "value"             : [36] 
+                    },
+                    "testing_param" : {
+                        "flag"              : "layers",
+                        "opts"              : [1, 5, 20, 100, 500]
+                    },
+                    "params"        : {
+                        "threads"           : 8,
+                        "blocks"            : [64,64],
+                        "precision"         : true,
+                        "tolerance"         : 0         
+                    }
+                },
+                "decompress": {
+                    "params"        : {
+                        "threads"           : 8
+                    }
+                }
+            }
+        },
+        {
+            "name"      : "prevod_barevneho_prostoru_final",
+            "type"      : "final",
+            "log"       : true,
+            "source"    : "previous"
+        }
+    ]
+}
+
+
